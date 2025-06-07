@@ -1,0 +1,210 @@
+{
+  "address": "2ByWbRNVZXus77BEQXmrWXtG3cYdEdzZVNA5zEaTyTrN",
+  "metadata": {
+    "name": "blog",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_post",
+      "discriminator": [
+        123,
+        92,
+        184,
+        29,
+        231,
+        24,
+        15,
+        202
+      ],
+      "accounts": [
+        {
+          "name": "post_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  115,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "author"
+              },
+              {
+                "kind": "arg",
+                "path": "post_seed_slug"
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "post_seed_slug",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "delete",
+      "discriminator": [
+        165,
+        204,
+        60,
+        98,
+        134,
+        15,
+        83,
+        134
+      ],
+      "accounts": [
+        {
+          "name": "post_account",
+          "writable": true
+        },
+        {
+          "name": "author",
+          "signer": true,
+          "relations": [
+            "post_account"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "edit_post",
+      "discriminator": [
+        218,
+        25,
+        82,
+        105,
+        200,
+        189,
+        238,
+        75
+      ],
+      "accounts": [
+        {
+          "name": "post_account",
+          "writable": true
+        },
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "post_account"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Post",
+      "discriminator": [
+        8,
+        147,
+        90,
+        186,
+        185,
+        56,
+        192,
+        150
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "TitleTooLong",
+      "msg": "Title is too long"
+    },
+    {
+      "code": 6001,
+      "name": "ContentTooLong",
+      "msg": "Content is too long"
+    },
+    {
+      "code": 6002,
+      "name": "SlugInvalid",
+      "msg": "Slug is invalid"
+    },
+    {
+      "code": 6003,
+      "name": "BumpNotFound",
+      "msg": "Bump Not Found"
+    },
+    {
+      "code": 6004,
+      "name": "Unauthorized",
+      "msg": "Unauthorized access"
+    }
+  ],
+  "types": [
+    {
+      "name": "Post",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}

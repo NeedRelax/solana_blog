@@ -292,6 +292,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "blog"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+]
+
+[[package]]
 name = "borsh"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -457,13 +464,6 @@ name = "constant_time_eq"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7c74b8349d32d297c9134b8c88677813a227df8f779daa29bfc29c183fe3dca6"
-
-[[package]]
-name = "counter"
-version = "0.1.0"
-dependencies = [
- "anchor-lang",
-]
 
 [[package]]
 name = "cpufeatures"
